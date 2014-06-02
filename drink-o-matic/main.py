@@ -24,7 +24,6 @@ from google.appengine.ext import ndb
 
 class Recipe(ndb.Model):
     name = ndb.StringProperty(required=True)
-    ingr_num = ndb.IntegerProperty(required=True)
 
 class Ingredient(ndb.Model):
     name = ndb.StringProperty(required=True)
@@ -36,26 +35,29 @@ class RecipeIngredient(ndb.Model):
     amt = ndb.FloatProperty(required=True)
 
 class MainHandler(webapp2.RequestHandler):
-    
+    # Return all combinations of list *ingr* as a list of tuples
     def ingr_combinations(self, ingr):
         combinations = []
         for element in range(1, len(ingr)+1):
-            combinations.append(list(itertools.combinations(ingr, element)))
-        return combinations
-        
+            combinations.append(itertools.combinations(ingr, element))
+        return list(itertools.chain.from_iterable(combinations))
+
+    def ingredients_in(self, recipe):
+        return [(ingr.ingr_key.get(), ingr.amt) for ingr in RecipeIngredient.query(RecipeIngredient.rec_key==recipe.key).fetch()]
+
     def get(self):
         self.response.write('Hello world! <br>')
 
         # my_ingr are the ingredients specified by the user
         my_ingr = ["Whiskey", "Vodka", "Orange Juice"]
-        
+
         # get all the recipes that correspond to these ingredients (some or all)
         # first generate all the ingredient combinations
         combos = self.ingr_combinations
         ingredients = Ingredient.query(Ingredient.name.IN(my_ingr)).fetch(3)
-        
+
         # for each subset, get the recipes that correspond
-            
+
         # get the keys to all the ingredients in my_ingr
         my_ingr_keys = Ingredient.query(Ingredient.name.IN(my_ingr)).fetch(100, keys_only=True)
 
