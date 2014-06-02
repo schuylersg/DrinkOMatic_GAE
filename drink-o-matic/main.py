@@ -19,7 +19,7 @@
 
 import webapp2
 import collections
-
+import itertools
 from google.appengine.ext import ndb
 
 class Recipe(ndb.Model):
@@ -30,18 +30,32 @@ class Ingredient(ndb.Model):
     name = ndb.StringProperty(required=True)
     ingr_type = ndb.StringProperty(required=True, choices=["alcohol", "mixer"])
 
-class Recipe_Ingredients_Link(ndb.Model):
+class RecipeIngredient(ndb.Model):
     rec_key = ndb.KeyProperty(kind=Recipe, required=True)
     ingr_key = ndb.KeyProperty(kind=Ingredient, required=True)
     amt = ndb.FloatProperty(required=True)
 
 class MainHandler(webapp2.RequestHandler):
+    
+    def ingr_combinations(self, ingr):
+        combinations = []
+        for element in range(1, len(ingr)+1):
+            combinations.append(list(itertools.combinations(ingr, element)))
+        return combinations
+        
     def get(self):
         self.response.write('Hello world! <br>')
 
         # my_ingr are the ingredients specified by the user
         my_ingr = ["Whiskey", "Vodka", "Orange Juice"]
-
+        
+        # get all the recipes that correspond to these ingredients (some or all)
+        # first generate all the ingredient combinations
+        combos = self.ingr_combinations
+        ingredients = Ingredient.query(Ingredient.name.IN(my_ingr)).fetch(3)
+        
+        # for each subset, get the recipes that correspond
+            
         # get the keys to all the ingredients in my_ingr
         my_ingr_keys = Ingredient.query(Ingredient.name.IN(my_ingr)).fetch(100, keys_only=True)
 
