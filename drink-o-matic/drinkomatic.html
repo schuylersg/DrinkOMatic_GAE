@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Drink-O-Matic</title>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/drinkomatic.css" />
+	</head>
+
+    <body bgcolor="black">
+		<div id="main-div" style="background-color:black">
+			<img id="title_image" style="margin:0px auto;display:block" src="images/drinkomatic.png" alt="DRINK-O-MATIC"/>			
+		
+		{% for ingredient in ingredients %}
+		<div class="menu-item">{{ingredient.name}}</div>
+		{% endfor %}
+		
+		</div>
+    </body>
+</html>
