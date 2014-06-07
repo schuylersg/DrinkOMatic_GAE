@@ -85,10 +85,6 @@ class IngredientsList(object):
             combinations.append(itertools.combinations(self.ingr_list, element))
         return list(itertools.chain.from_iterable(combinations))
         
-    def recipe_with_ingredients(self):
-        # ingredient.ingredient == ingredient1 or ingredient.ingredient == ingredient2 and ingredient
-        ingredients = [ ingr.get() for ingr in ingr_list ]
-        
     def all_recipes(self):
         # get all recipes that correspond to the ingredients
         recipes = [ recipe for ingr in self.ingr_list for recipe in Ingredient.from_name(ingr).recipes() ]
