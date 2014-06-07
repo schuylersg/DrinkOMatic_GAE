@@ -15,8 +15,6 @@
 # limitations under the License.
 #
 
-#xaouhbxxskvpejyy
-
 import webapp2
 import collections
 
