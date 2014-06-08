@@ -68,7 +68,15 @@ class Ingredient(QueryHelper):
 
     def recipes(self):
         return [ r_i.recipe.get() for r_i in RecipeIngredient.query(RecipeIngredient.ingredient==self.key).fetch() ]
-
+        
+    @classmethod
+    def alcohols(cls, num=10):
+        return cls.query(cls.ingredient_type=="alcohol").fetch(num)
+    
+    @classmethod
+    def mixers(cls, num=10):
+        return cls.query(cls.ingredient_type=="mixer").fetch(num)
+        
 class IngredientsList(object):
     def __init__(self, ingr_list):
         """docstring for __init__"""
