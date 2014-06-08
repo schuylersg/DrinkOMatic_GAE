@@ -24,39 +24,73 @@ import collections
 import itertools
 from google.appengine.ext import ndb
 
+import jinja2
+
+JINJA_ENVIRONMENT = jinja2.Environment(
+    loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
+    extensions=['jinja2.ext.autoescape'],
+    autoescape=True)
 
 from models import *
 
-
-
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-##        ing = Ingredient(name="Tequila", ingredient_type="alcohol")
-##        ing.put();
-
-
-        ingredients = Ingredient.query().fetch(10);
+        liquors = Ingredient.alcohols()
+        mixers = Ingredient.mixers()
         template_values = {
-            'ingredients': ingredients,
+            'liquors': liquors,
+            'mixers' : mixers,
         }
         template = JINJA_ENVIRONMENT.get_template('/drinkomatic.html')
-        self.response.write(ingredients)
+        #self.response.write(ingredients)
         self.response.write(template.render(template_values))
 
+class UpdateIngredients(webapp2.RequestHandler):
+    def post(self):
+        ingr_addrem = self.request.get("change");
+        template = JINJA_ENVIRONMENT.get_template('/recipes.html')
+        liquors = Ingredient.alcohols()
+        mixers = Ingredient.mixers()
+        r1 = Recipe(name="Gin and Tonic")
+        r2 = Recipe(name="Jack and Coke")
+        r = [r1, r2]
+        template_values = {
+            'liquors': liquors,
+            'mixers' : mixers,
+            'recipes': r,
+        }
 
-##        # my_ingr are the ingredients specified by the user
-##        my_ingr = ["whiskey", "vodka", "oj"]
-##
-##        # get all the recipes that correspond to these ingredients (some or all)
-##        ingr_list = IngredientsList(my_ingr)
-##        mixable_recipes = ingr_list.all_recipes()
+        self.response.write(template.render(template_values))
+        #self.response.write("Hello")
+##        if(ingr_addrem ==  "Add"):
+##            self.response.write(template.render(template_values))
+##        else:
+##            self.response.write("Removed data")
 
-##
-##        for mr in mixable_recipes:
-##            self.response.write(mr)
-##            self.response.write("<br>")
-##
 
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),
+    ('/UpdateIngr', UpdateIngredients),
 ], debug=True)
+
+
+##        ing = Ingredient(name="Tequila", ingredient_type="alcohol")
+##        ing.put();
+##        ing = Ingredient(name="Whiskey", ingredient_type="alcohol")
+##        ing.put();
+##        ing = Ingredient(name="Rum", ingredient_type="alcohol")
+##        ing.put();
+##        ing = Ingredient(name="Vodka", ingredient_type="alcohol")
+##        ing.put();
+##        ing = Ingredient(name="Gin", ingredient_type="alcohol")
+##        ing.put();
+##        ing = Ingredient(name="Orage Juice", ingredient_type="mixer")
+##        ing.put();
+##        ing = Ingredient(name="Coke", ingredient_type="mixer")
+##        ing.put();
+##        ing = Ingredient(name="Lemon Juice", ingredient_type="mixer")
+##        ing.put();
+##        ing = Ingredient(name="Simple Syrup", ingredient_type="mixer")
+##        ing.put();
+##        ing = Ingredient(name="Lime Juice", ingredient_type="mixer")
+##        ing.put();
