@@ -43,22 +43,15 @@
 		border-style:solid;
 		border-width:2px;
 		border-color:black;
-		float:left;
+		display:inline-block;
 		font-family:SWRomnd;
 		font-size:1.0em;
 		font-weight:bold;
 	}
 	
 	.menu-item-select{
-		background-color:white;
-		color: black;
-		border-style:solid;
-		border-width:2px;
-		border-color:LightSlateGray;
-		float:left;
-		cursor:pointer;
-		box-shadow:2px 2px 1px black;
-		font-family:SWRomnd;
+		color: orange;
+		text-shadow:1px 1px red;		
 	}
 
 	.menu-item-header{
@@ -71,6 +64,7 @@
 	}
 	
 	.menu-div{
+		Text-align:center;
 /*		width:50%
 		position:absolute;
 		top:0px; */
