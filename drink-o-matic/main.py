@@ -116,16 +116,14 @@ class RecipeIngredient(ndb.Model):
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-##        ing = Ingredient(name="Tequila", ingredient_type="alcohol")
-##        ing.put();
-
-
-        ingredients = Ingredient.query().fetch(10);
+        liquors = Ingredient.query(Ingredient.ingredient_type =="alcohol").fetch();
+        mixers = Ingredient.query(Ingredient.ingredient_type =="mixer").fetch();
         template_values = {
-            'ingredients': ingredients,
+            'liquors': liquors,
+            'mixers' : mixers,
         }
         template = JINJA_ENVIRONMENT.get_template('/drinkomatic.html')
-        self.response.write(ingredients)
+        #self.response.write(ingredients)
         self.response.write(template.render(template_values))
 
 
@@ -142,6 +140,45 @@ class MainHandler(webapp2.RequestHandler):
 ##            self.response.write("<br>")
 ##
 
+
+
+class UpdateIngredients(webapp2.RequestHandler):
+    def post(self):
+        ingr_addrem = self.request.get("change");
+        template = JINJA_ENVIRONMENT.get_template('/recipes.html')
+        r1 = Recipe(name="Gin and Tonic")
+        r2 = Recipe(name="Jack and Coke")
+        r = [r1, r2]
+        template_values = {'recipes': r,}
+        #self.response.write("Hello")
+        if(ingr_addrem ==  "Add"):
+            self.response.write(template.render(template_values))
+        else:
+            self.response.write("Removed data")
+
 app = webapp2.WSGIApplication([
-    ('/', MainHandler)
+    ('/', MainHandler),
+    ('/UpdateIngr', UpdateIngredients),
 ], debug=True)
+
+
+##        ing = Ingredient(name="Tequila", ingredient_type="alcohol")
+##        ing.put();
+##        ing = Ingredient(name="Whiskey", ingredient_type="alcohol")
+##        ing.put();
+##        ing = Ingredient(name="Rum", ingredient_type="alcohol")
+##        ing.put();
+##        ing = Ingredient(name="Vodka", ingredient_type="alcohol")
+##        ing.put();
+##        ing = Ingredient(name="Gin", ingredient_type="alcohol")
+##        ing.put();
+##        ing = Ingredient(name="Orage Juice", ingredient_type="mixer")
+##        ing.put();
+##        ing = Ingredient(name="Coke", ingredient_type="mixer")
+##        ing.put();
+##        ing = Ingredient(name="Lemon Juice", ingredient_type="mixer")
+##        ing.put();
+##        ing = Ingredient(name="Simple Syrup", ingredient_type="mixer")
+##        ing.put();
+##        ing = Ingredient(name="Lime Juice", ingredient_type="mixer")
+##        ing.put();
