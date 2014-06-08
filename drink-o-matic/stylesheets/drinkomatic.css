@@ -1,17 +1,23 @@
-	canvas{
-		position:absolute;
-		z-index:9;
-	}
-
 	div{
 		font-family:SWRomnd;
 		white-space: nowrap;
 		cursor:pointer;
+		color:white;
 	}
 	
-	.ing-menu {
-		background-color: black;
-		color:white;
+	#main-div{
+	}
+	
+	#canvas-wrap { 
+		position:relative; 
+		width:800px; 
+	}
+
+	#canvas-wrap canvas { 
+		position:absolute;
+		top:0;
+		left:0;
+		z-index:0;
 	}
 	
 	#liquor-list{
@@ -25,12 +31,39 @@
 		overflow:hidden;
 	} 
 	
-	#recipes{
+	#change-view{
+		clear:both;
+		text-align:center;
+		width: 50%;
+		margin: 0 auto;	
+	}
+	
+	#selected-liquors{
 		float:left;
+		width:20%;
+		text-align:left;
+		position:inline-block;
+	}
+	
+	#cocktails-div{
+		float:left;
+		width:80%;
+		text-align:center;
+		position:inline-block;
+		}
+	
+	#selected-mixers{
+		float:left;
+		width:auto;
+		text-align:right;
+				position:inline-block;
+	}
+	
+	.ing-menu {
+		background-color: black;
 		color:white;
 	}
 	
-
 	.menu-item {
 		padding-left: 5px;
 		padding-right: 5px;
@@ -43,7 +76,7 @@
 		border-style:solid;
 		border-width:2px;
 		border-color:black;
-		display:inline-block;
+		float:left;
 		font-family:SWRomnd;
 		font-size:1.0em;
 		font-weight:bold;
@@ -65,58 +98,20 @@
 	
 	.menu-div{
 		Text-align:center;
-/*		width:50%
-		position:absolute;
-		top:0px; */
 	}
 
 	.liquor-ing{
 		text-align:left;
-		position:absolute;
 		color:white;
-		z-index:20;
+		z-index:20;		
+	}
 		
-	}
-	
-	.liquor-ing-highlight{
-		
-	}
-	
-	.liquor-ing-nonhighlight{
-		opacity:0.3;
-		font-size:75%;
-	}
-	
 	.mixer-ing{
-		position:absolute;
 		text-align:left;
 		color:white;
 		z-index:20;
 	}
 
-	.mixer-ing-highlight{
-		
-	}
-	
-	.mixer-ing-nonhighlight{
-		opacity:0.3;
-		font-size:75%;
-	}
-	
-	.ingredient{
-		position:absolute;
-		font-size:100%;
-	}
-
-	.ingredient-nonhighlight{
-		font-size:100%;
-		color:RGB(50, 50, 50);
-	}
-	
-	.ingredient-highlight{
-		font-size:125%;
-	}
-	
 	.cocktail{
 		color:white;
 		text-align:center;
@@ -146,20 +141,11 @@
 		opacity:0.3;
 		z-index:8;
 	}
-	
-	.cocktail-recipe{
-		background-color:darkred;
-		color:white;
-		position:absolute;
-		z-index:30;
-		white-space:normal;
-		text-align:center;
+
+	.show{
+		display:default;
 	}
 	
-	.recipe-show{
-		visibility:hidden;
-	}
-	
-	.recipe-hide{
-		visibility:hidden;
+	.hide{
+		display:none;
 	}

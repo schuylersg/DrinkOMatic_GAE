@@ -10,7 +10,12 @@
     <body bgcolor="black">
 		<div id="main-div" style="background-color:black">
 			<img id="title_image" style="margin:0px auto;display:block" src="images/drinkomatic.png" alt="DRINK-O-MATIC"/>
-			<div id='ing-menu-div' class='ing-menu'>
+			<div class="hide" id="canvas-wrap">
+				<canvas></canvas>
+				<div id="overlay"></div>
+			</div>
+			
+			<div id='ing-menu-div' class='ing-menu show'>
 				<div id='liquor-list' class="menu-div">
 					<div class='menu-item-header'><h2>Alcohols</h2></div>
 					{% for liquor in liquors %}
@@ -24,7 +29,7 @@
 					{% endfor %}
 				</div>
 			</div>
-			<div id="recipes"></div>
+			<div id="change-view">Change View</div>
 		</div>
     </body>
 </html>

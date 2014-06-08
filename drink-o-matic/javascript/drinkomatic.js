@@ -1,6 +1,12 @@
 
 
 $(document).ready(function() {
+	var height = $(window).height() - 75; 
+	$("#main-div").height(height);
+
+	$("#canvas-wrap").height(height-100);
+	$("canvas").height(height-100);
+	
 	$(".menu-item").click(function() {
 		$( this ).toggleClass("menu-item-select ");
 		if($(this).hasClass("menu-item-select")){
@@ -8,9 +14,15 @@ $(document).ready(function() {
 		}else{
 			dataToSend = {ingr: $(this).text(), change: 'Rem'};
 		}
-		$( "#recipes" ).empty();
-		$( "#recipes" ).load( "/UpdateIngr", dataToSend, function() {
+		$( "#overlay" ).empty();
+		$( "#overlay" ).load( "/UpdateIngr", dataToSend, function() {
 			;
 		});
-	});	
+	});
+	
+	$("#change-view").click(function() {
+		$("#canvas-wrap").toggleClass("show hide");
+		$("#ing-menu-div").toggleClass("show hide");
+	});
+	
 });

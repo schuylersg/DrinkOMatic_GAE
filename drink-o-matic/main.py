@@ -146,15 +146,23 @@ class UpdateIngredients(webapp2.RequestHandler):
     def post(self):
         ingr_addrem = self.request.get("change");
         template = JINJA_ENVIRONMENT.get_template('/recipes.html')
+        liquors = Ingredient.query(Ingredient.ingredient_type =="alcohol").fetch();
+        mixers = Ingredient.query(Ingredient.ingredient_type =="mixer").fetch();
         r1 = Recipe(name="Gin and Tonic")
         r2 = Recipe(name="Jack and Coke")
         r = [r1, r2]
-        template_values = {'recipes': r,}
+        template_values = {
+            'liquors': liquors,
+            'mixers' : mixers,
+            'recipes': r,
+        }
+
+        self.response.write(template.render(template_values))
         #self.response.write("Hello")
-        if(ingr_addrem ==  "Add"):
-            self.response.write(template.render(template_values))
-        else:
-            self.response.write("Removed data")
+##        if(ingr_addrem ==  "Add"):
+##            self.response.write(template.render(template_values))
+##        else:
+##            self.response.write("Removed data")
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
