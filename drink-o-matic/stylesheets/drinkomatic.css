@@ -40,23 +40,21 @@
 	
 	#selected-liquors{
 		float:left;
-		width:20%;
+		width:200px;
 		text-align:left;
-		position:inline-block;
 	}
 	
 	#cocktails-div{
 		float:left;
-		width:80%;
+		width:200px;
 		text-align:center;
 		position:inline-block;
 		}
 	
 	#selected-mixers{
 		float:left;
-		width:auto;
+		width:200px;
 		text-align:right;
-				position:inline-block;
 	}
 	
 	.ing-menu {
