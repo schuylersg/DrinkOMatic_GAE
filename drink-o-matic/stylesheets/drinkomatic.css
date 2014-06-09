@@ -22,7 +22,7 @@
 	#canvas-wrap { 
 		position:absolute;
 		left:0;
-		z-index:1
+		z-index:0
 	}
 
 	#canvas-wrap canvas { 
@@ -42,7 +42,6 @@
 		position:relative;
 		top:0;
 		left:0;
-		z-index:10;
 	}
 	#mixer-list{
 		float:left;
@@ -51,7 +50,6 @@
 		position:relative;
 		top:0;
 		left:0;
-		z-index:10;
 	} 
 	
 	#selected-liquors{
@@ -132,12 +130,12 @@
 
 	.liquor-ing{
 		text-align:left;
-		z-index:20;		
+		padding-left:10px;
 	}
-		
+
 	.mixer-ing{
 		margin-left:auto;
-		z-index:20;
+		padding-right:10px;
 	}
 
 	.cocktail{
@@ -148,14 +146,12 @@
 		font-size:0.8em;
 		margin:5px;
 		padding:2px 5px;
-		z-index:10;
 	}
 	
 	.cocktail-highlight{
 		font-size:1em;
 		margin:5px;
 		padding:2px 5px;
-		z-index:11;
 	}
 	
 	.cocktail-nonhighlight{
@@ -163,7 +159,6 @@
 		margin:5px;
 		padding:2px 5px;
 		opacity:0.3;
-		z-index:8;
 	}
 
 	.show{
