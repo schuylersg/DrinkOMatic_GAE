@@ -1,5 +1,5 @@
 from google.appengine.ext import ndb
-
+import itertools
 class QueryHelper(ndb.Model):
     @classmethod
     def from_name(cls, name):
@@ -12,6 +12,10 @@ class QueryHelper(ndb.Model):
         except IndexError:
             print "no value at "+value
             return None
+            
+    @classmethod
+    def all(cls):
+        return cls.query().fetch()
         
     def validate_unique(self):
         for k in self.unique_fields:
@@ -31,6 +35,9 @@ class QueryHelper(ndb.Model):
              
     def __eq__(self, other):
         return self.name == other.name
+        
+    def __hash__(self):
+        return self.key.id()
 
 # Recipe has many ingredients through the RecipeIngredient class
 class Recipe(QueryHelper, ndb.Model):
@@ -93,8 +100,7 @@ class IngredientsList(object):
     def all_recipes(self):
         """get all recipes that correspond to the ingredients"""
         # xxx todo, can we filter this list so dups are removed?
-        recipes = [ recipe for ingr in self.ingr_list for recipe in Ingredient.from_name(ingr).recipes() ]
-
+        recipes = set([ recipe for ingr in self.ingr_list for recipe in Ingredient.from_name(ingr).recipes() ])
         combinations = self.ingr_combinations()
         all_recipes = []
         for combo in combinations:
@@ -105,12 +111,23 @@ class IngredientsList(object):
         names = [ recipe.name for recipe in all_recipes ]
         # This gives us unique recipes
         return list(set(names))
-
+        
 class RecipeIngredient(ndb.Model):
     """Join model for Recipe and Ingredient"""
     recipe = ndb.KeyProperty(kind=Recipe, required=True)
     ingredient = ndb.KeyProperty(kind=Ingredient, required=True)
     amount = ndb.FloatProperty(required=True)
+    
+class InteractionMatrix(ndb.Model):
+    """Matrix of shared ingredient frequences in recipes
+    That is, for ingredients m, n, InteractionMatix[m,n] will contain the 
+    number of times m and n share recipes"""
+    
+class Menu(QueryHelper):
+    """Menu belogs to User"""
+    name = ndb.StringProperty()
+    ingredient = ndb.KeyProperty(kind=Ingredient, repeated=True)
+    recipe = ndb.KeyProperty(kind=Recipe, repeated=True)
     
 class User(QueryHelper):
     """User has many Menus"""
@@ -119,16 +136,6 @@ class User(QueryHelper):
     menu = ndb.KeyProperty(kind=Menu, repeated=True)
     unique_fields = ["name", "email"]
     
-class Menu(QueryHelper):
-    """Menu belogs to User"""
-    name = ndb.StringProperty()
-    ingredient = ndb.KeyProperty(kind=Ingredient, repeated=True)
-    recipe = ndb.KeyProperty(kind=Recipe, repeated=True)
-    interaction_matrix = ndb.StructuredProperty(kind=InteractionMatrix)
-    
-class InteractionMatrix(ndb.Model):
-    """Matrix of shared ingredient frequences in recipes
-    That is, for ingredients m, n, InteractionMatix[m,n] will contain the 
-    number of times m and n share recipes"""
+
     
     
