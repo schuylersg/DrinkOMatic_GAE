@@ -6,7 +6,9 @@
 	}
 	
 	#main-div{
-		
+		position:absolute;
+		top:0;
+		left:0;
 	}
 	
 	#title-image{
@@ -18,23 +20,38 @@
 	}
 	
 	#canvas-wrap { 
-		position:relative; 
+		position:absolute;
+		left:0;
+		z-index:1
 	}
 
 	#canvas-wrap canvas { 
 		position:absolute;
+		left:0;
 		z-index:0;
+	}
+	
+	#ing-menu-div{
+		z-index:10;
 	}
 	
 	#liquor-list{
 		float:left;
 		width:50%;
 		overflow:hidden;
+		position:relative;
+		top:0;
+		left:0;
+		z-index:10;
 	}
 	#mixer-list{
 		float:left;
 		width:50%;
 		overflow:hidden;
+		position:relative;
+		top:0;
+		left:0;
+		z-index:10;
 	} 
 	
 	#selected-liquors{
