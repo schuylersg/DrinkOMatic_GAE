@@ -12,7 +12,7 @@ class QueryHelper(ndb.Model):
         except IndexError:
             print "no value at "+value
             return None
-        
+
     def validate_unique(self):
         for k in self.unique_fields:
             # self.__class__.k is the class attribute that holds the Property
@@ -22,13 +22,13 @@ class QueryHelper(ndb.Model):
             else:
                 next
         return True
-     
+
     def put(self, *args, **kwargs):
         if self.validate_unique():
             super(QueryHelper, self).put(*args, **kwargs)
         else:
             raise ndb.InvalidPropertyError()
-             
+
     def __eq__(self, other):
         return self.name == other.name
 
@@ -36,7 +36,7 @@ class QueryHelper(ndb.Model):
 class Recipe(QueryHelper, ndb.Model):
     name = ndb.StringProperty(required=True)
     unique_fields = ["name"]
-    
+
     @classmethod
     def create(cls, **kwargs):
         recipe = cls(**kwargs).put()
@@ -68,15 +68,15 @@ class Ingredient(QueryHelper):
 
     def recipes(self):
         return [ r_i.recipe.get() for r_i in RecipeIngredient.query(RecipeIngredient.ingredient==self.key).fetch() ]
-        
+
     @classmethod
     def alcohols(cls, num=10):
         return cls.query(cls.ingredient_type=="alcohol").fetch(num)
-    
+
     @classmethod
     def mixers(cls, num=10):
         return cls.query(cls.ingredient_type=="mixer").fetch(num)
-        
+
 class IngredientsList(object):
     def __init__(self, ingr_list):
         """docstring for __init__"""
