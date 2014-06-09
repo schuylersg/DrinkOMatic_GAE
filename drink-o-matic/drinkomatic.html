@@ -9,10 +9,18 @@
 
     <body bgcolor="black">
 		<div id="main-div" style="background-color:black">
-			<img id="title_image" style="margin:0px auto;display:block" src="images/drinkomatic.png" alt="DRINK-O-MATIC"/>
+			<img id="title-image" src="images/drinkomatic.png" alt="DRINK-O-MATIC"/>
+			<div id="options-bar">
+				<div id="signin" class="options-bar-item">Sign In</div>				
+				<div id="change-view" class="options-bar-item">Menu</div>
+			</div>
 			<div class="hide" id="canvas-wrap">
 				<canvas></canvas>
-				<div id="overlay"></div>
+				<div id="overlay">
+					<div id="selected-liquors"></div>
+					<div id="cocktails-div"></div>
+					<div id="selected-mixers"></div>
+				</div>
 			</div>
 			
 			<div id='ing-menu-div' class='ing-menu show'>
@@ -29,7 +37,6 @@
 					{% endfor %}
 				</div>
 			</div>
-			<div id="change-view">Change View</div>
 		</div>
     </body>
 </html>

@@ -6,17 +6,23 @@
 	}
 	
 	#main-div{
+		
+	}
+	
+	#title-image{
+		margin-left: auto;
+		margin-right:auto;
+		margin-top:10px;
+		margin-bottom:20px;
+		display:block;
 	}
 	
 	#canvas-wrap { 
 		position:relative; 
-		width:800px; 
 	}
 
 	#canvas-wrap canvas { 
 		position:absolute;
-		top:0;
-		left:0;
 		z-index:0;
 	}
 	
@@ -30,13 +36,6 @@
 		width:50%;
 		overflow:hidden;
 	} 
-	
-	#change-view{
-		clear:both;
-		text-align:center;
-		width: 50%;
-		margin: 0 auto;	
-	}
 	
 	#selected-liquors{
 		float:left;
@@ -55,6 +54,22 @@
 		float:left;
 		width:200px;
 		text-align:right;
+	}
+	
+	#options-bar{
+		margin-left:140px;
+		margin-right:100px;
+		overflow:hidden;
+		padding-top:10px;
+		padding-bottom:10px;
+		color:darkslategray;
+	}
+	
+	.options-bar-item{
+		padding-left:20px;
+		padding-right:20px;
+		color:darkgray;
+		float:left;
 	}
 	
 	.ing-menu {
@@ -100,24 +115,20 @@
 
 	.liquor-ing{
 		text-align:left;
-		color:white;
 		z-index:20;		
 	}
 		
 	.mixer-ing{
-		text-align:left;
-		color:white;
+		margin-left:auto;
 		z-index:20;
 	}
 
 	.cocktail{
-		color:white;
 		text-align:center;
 	}
 	
 	.cocktail-normal{
 		font-size:0.8em;
-		color:white;
 		margin:5px;
 		padding:2px 5px;
 		z-index:10;
@@ -125,7 +136,6 @@
 	
 	.cocktail-highlight{
 		font-size:1em;
-		color:white;
 		margin:5px;
 		padding:2px 5px;
 		z-index:11;
@@ -133,7 +143,6 @@
 	
 	.cocktail-nonhighlight{
 		font-size:0.8em;
-		color:white;
 		margin:5px;
 		padding:2px 5px;
 		opacity:0.3;
