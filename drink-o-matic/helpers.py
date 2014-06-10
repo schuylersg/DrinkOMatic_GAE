@@ -14,11 +14,9 @@ class StringMatrix():
 
 
 def main():
-    s ="Hello"
-    v = ord(s[2])+1;
-    s[2] = chr(v)
-    print(s[3])
-    print(s)
+    a = None
+    if(a )
+        print NO
 
 
 if __name__ == '__main__':

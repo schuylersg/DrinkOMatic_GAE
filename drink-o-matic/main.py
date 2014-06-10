@@ -35,7 +35,7 @@ from models import *
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        liquors = Ingredient.alcohols()
+        liquors = Ingredient.liquors()
         mixers = Ingredient.mixers()
         template_values = {
             'liquors': liquors,
@@ -47,9 +47,26 @@ class MainHandler(webapp2.RequestHandler):
 
 class UpdateIngredients(webapp2.RequestHandler):
     def post(self):
-        ingr_addrem = self.request.get("change");
+        menu_name = self.request.get("menuname")
+        ingr_name = self.request.get("ingr")
+        ingr_addrem = self.request.get("change")
+
+        ingr_key = Ingredient.query(Ingredient.name==ingr_name).fetch(keys_only=True)[0]
+        #ingr = ingr_key.get();
+
+        menu_key = 0;
+
+        if(ingr_addrem == "Add"):
+            Menu.add_item(menu_name, ingr_key.get().ingredient_type, ingr_key)
+        elif(ingr_addrem == "Rem"):
+            Menu.remove_item(menu_name, ingr.get().ingredient_type, ingr)
+
+
         template = JINJA_ENVIRONMENT.get_template('/recipes.html')
-        liquors = Ingredient.alcohols()
+
+        menu = Menu.from_name(menu_name)
+        print menu.name;
+        liquors = ndb.get_multi([ndb.Key(Ingredient, k) for k in menu.liquor])
         mixers = Ingredient.mixers()
         r1 = Recipe(name="Gin and Tonic")
         r2 = Recipe(name="Jack and Coke")
@@ -74,15 +91,15 @@ app = webapp2.WSGIApplication([
 ], debug=True)
 
 
-##        ing = Ingredient(name="Tequila", ingredient_type="alcohol")
+##        ing = Ingredient(name="Tequila", ingredient_type="liquor")
 ##        ing.put();
-##        ing = Ingredient(name="Whiskey", ingredient_type="alcohol")
+##        ing = Ingredient(name="Whiskey", ingredient_type="liquor")
 ##        ing.put();
-##        ing = Ingredient(name="Rum", ingredient_type="alcohol")
+##        ing = Ingredient(name="Rum", ingredient_type="liquor")
 ##        ing.put();
-##        ing = Ingredient(name="Vodka", ingredient_type="alcohol")
+##        ing = Ingredient(name="Vodka", ingredient_type="liquor")
 ##        ing.put();
-##        ing = Ingredient(name="Gin", ingredient_type="alcohol")
+##        ing = Ingredient(name="Gin", ingredient_type="liquor")
 ##        ing.put();
 ##        ing = Ingredient(name="Orage Juice", ingredient_type="mixer")
 ##        ing.put();
