@@ -1,0 +1,17 @@
+<div id="selected-liquors">
+	{% for liquor in liquors %}
+		<div class="liquor-ing hide">{{liquor.name}}</div>
+	{% endfor %}
+</div>
+
+<div id="cocktails-div">
+	{% for recipe in recipes %}
+		<div class="cocktail hide">{{recipe.name}}</div>
+	{% endfor %}
+</div>
+
+<div id="selected-mixers">
+	{% for mixer in mixers %}
+		<div class="mixer-ing hide">{{mixer.name}}</div>
+	{% endfor %}
+</div>

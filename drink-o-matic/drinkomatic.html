@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Drink-O-Matic</title>
+		<link rel="stylesheet" type="text/css" href="/stylesheets/drinkomatic.css" />
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="/javascript/drinkomatic.js" type="text/javascript"></script>
+	</head>
+
+    <body bgcolor="black">
+		<div id="main-div" style="background-color:black">
+			<img id="title-image" src="images/drinkomatic.png" alt="DRINK-O-MATIC"/>
+			<div id="options-bar">
+				<div id="signin" class="options-bar-item">Sign In</div>
+				<div id="change-view" class="options-bar-item">Menu</div>
+				<div id="menu-name" class="options-bar-item"><input type="text" placeholder="Menu Name" name="menuname"></div>
+			</div>
+			<div id="canvas-wrap">
+				<canvas class="hide"></canvas>
+				<div id="overlay">
+				</div>
+			</div>
+			
+			<div id='ing-menu-div' class='ing-menu show'>
+				<div id='liquor-list' class="menu-div">
+					<div class='menu-item-header'><h2>Liquors</h2></div>
+					{% for liquor in liquors %}
+						<div class="menu-item">{{liquor.name}}</div>
+					{% endfor %}
+				</div>	
+				<div id='mixer-list' class="menu-div">
+					<div class='menu-item-header'><h2>Mixers</h2></div>
+					{% for mixer in mixers %}
+						<div class="menu-item">{{mixer.name}}</div>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+    </body>
+</html>
