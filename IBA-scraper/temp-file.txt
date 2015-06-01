@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-gb" lang="en-gb" dir="ltr">
+<head>
+	  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <meta name="robots" content="index, follow" />
+  <meta name="keywords" content="bartenders,international,drinks,alcohol,cocktails,shooters,professionals,associations,news,flair-tending,cocktail of the month" />
+  <meta name="title" content="ALEXANDER" />
+  <meta name="author" content="" />
+  <meta name="description" content="The International Bartender's Association was officially founded during a meeting held at the Grand Hotel, Torquay, England, on February 24th, 1951." />
+  <meta name="generator" content="Joomla! 1.5 - Open Source Content Management" />
+  <title>ALEXANDER</title>
+  <script type="text/javascript" src="/plugins/system/mtupgrade/mootools.js"></script>
+  <script type="text/javascript" src="/media/system/js/caption.js"></script>
+
+	<link rel="stylesheet" href="/templates/beez/css/template.css" type="text/css" />
+
+</head>
+<body class="contentpane" id="print">
+	
+	<div class="wrapper1-border">
+    	<div class="wrapper1-bg clear">
+    	<div class="article-text-indent">
+            <div class="clear">
+                <table class="contentpaneopen">
+                                                            <tr>
+                        <td valign="top">                            <div id="official_cocktails" style="padding:20px 10px 10px 20px;">
+<div class="oc_image" style="width: 145px; float: left;"><img src="/images/cocktail_drinks/alexander.jpg" border="0" style="border:none;" /></div>
+<div class="oc_info" style="line-height: 16px; width: 400px; float: left; color: #666666; font-size: 12px;">
+<p class="info"><span class="info1" style="color:#818915; font-size:16px; font-weight:bold;">ALEXANDER</span><br /><br /><span class="info2" style="color:black; font-size:12px; font-weight:bold;">After Dinner Cocktail</span></p>
+<ul class="list">
+<li>3 cl Cognac</li>
+<li>3 cl Créme de Cacao (brown)</li>
+<li>3 cl Fresh cream</li>
+</ul>
+Shake and strain into a chilled cocktail glass.<br />Sprinkle with fresh ground nutmeg.
+<p> </p>
+</div>
+</div> </td>
+                    </tr>
+                                    </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="article-separator-indent"><span class="article_separator">&nbsp;</span></div>
+ 
+</body>
+</html>

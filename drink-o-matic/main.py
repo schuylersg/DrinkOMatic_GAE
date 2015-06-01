@@ -19,6 +19,8 @@ import webapp2
 import collections
 import itertools
 from google.appengine.ext import ndb
+import logging
+import os
 
 import jinja2
 
@@ -31,7 +33,8 @@ from models import *
 
 class MainHandler(webapp2.RequestHandler):
     def get(self):
-        liquors = Ingredient.alcohols()
+        logging.info("get")
+        liquors = Ingredient.liquors()
         mixers = Ingredient.mixers()
         template_values = {
             'liquors': liquors,
@@ -40,11 +43,13 @@ class MainHandler(webapp2.RequestHandler):
         template = JINJA_ENVIRONMENT.get_template('/drinkomatic.html')
         self.response.write(template.render(template_values))
 
+
 class UpdateIngredients(webapp2.RequestHandler):
     def post(self):
+        print "post"
         ingr_addrem = self.request.get("change");
         template = JINJA_ENVIRONMENT.get_template('/recipes.html')
-        liquors = Ingredient.alcohols()
+        liquors = Ingredient.liquors()
         mixers = Ingredient.mixers()
         r1 = Recipe(name="Gin and Tonic")
         r2 = Recipe(name="Jack and Coke")

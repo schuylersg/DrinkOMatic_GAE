@@ -119,7 +119,7 @@ class RecipeIngredient(ndb.Model):
     amount = ndb.FloatProperty(required=True)
 
 class Menu(QueryHelper):
-    """Menu belogs to User"""
+    """Menu belongs to User"""
     name = ndb.StringProperty()
     liquor = ndb.KeyProperty(kind=Ingredient, repeated=True)
     mixer = ndb.KeyProperty(kind=Ingredient, repeated=True)
@@ -131,7 +131,7 @@ class Menu(QueryHelper):
         """Add an item (liquor, mixer, or recipe) to a menu"""
         menu = cls.from_name(menu_name)
         if(menu is None):
-            menu = Menu(Menu.name=menu_name)
+            menu = Menu(name=menu_name)
 
         l = getattr(menu, add_type)
         l.append(item)
